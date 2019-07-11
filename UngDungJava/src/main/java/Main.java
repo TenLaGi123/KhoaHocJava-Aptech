@@ -10,8 +10,8 @@ public class Main extends Application {
         LoginStage loginStage = new LoginStage();
         loginStage.initStyle(StageStyle.UNIFIED);
 
-        ExcelManager excelManager = new ExcelManager();
-        excelManager.readExcelFile();
+//        ExcelManager excelManager = new ExcelManager();
+//        excelManager.readExcelFile();
         loginStage.show();
     }
 
