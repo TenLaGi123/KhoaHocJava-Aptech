@@ -16,6 +16,7 @@ import models.User;
 public class LoginStage extends Stage implements IMyStage{
 
     LoginStage(){
+        super();
         setUpUi();
         setUpAction();
     }
@@ -73,7 +74,10 @@ public class LoginStage extends Stage implements IMyStage{
 
        txtEmail.setText("duong.nguyen13600@gmail.com");
        txtPassword.setText("ABC123");
-        txtField.setText("ABC123");
+       txtField.setText("ABC123");
+//        txtEmail.setText("quangdang123@gmail.com");
+//        txtPassword.setText("LCD123");
+//        txtField.setText("LCD123");
 
     }
 
@@ -95,16 +99,18 @@ public class LoginStage extends Stage implements IMyStage{
              //if successful
              if(user != null){
                  this.hide();
+                 User.logInUser = user;
                  TableStage tableStage = new TableStage();
                  Navigation.getInstance().pushItem(tableStage);
                  tableStage.show();
+                 tableStage.checkUserStatus();
              }
 
          });
-
+         txtPassword.textProperty().bindBidirectional(txtField.textProperty());
          toggleButton.setOnAction(new EventHandler<ActionEvent>() {
              public void handle(ActionEvent event) {
-                 txtPassword.textProperty().bindBidirectional(txtField.textProperty());
+                 //txtPassword.textProperty().bindBidirectional(txtField.textProperty());
                  txtPassword.visibleProperty().bind(toggleButton.selectedProperty().not());
                  txtField.visibleProperty().bind(toggleButton.selectedProperty());
              }

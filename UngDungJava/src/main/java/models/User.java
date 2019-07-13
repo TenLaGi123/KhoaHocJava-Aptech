@@ -24,6 +24,8 @@ public class User {
     private String phoneNumber;
     private String description;
 
+    public static User logInUser;
+
     public User(Integer id, String name, String email, String password, String phoneNumber, String description) {
         this.id = id;
         this.name = name;

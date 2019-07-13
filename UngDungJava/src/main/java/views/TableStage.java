@@ -13,11 +13,12 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import models.Product;
+import org.apache.poi.ss.formula.functions.Na;
 
 import java.util.Iterator;
 import java.util.UUID;
 
-public class TableStage extends Stage implements IMyStage {
+public class TableStage extends MyStage implements IMyStage {
 
     private Product selectedProduct;
 
@@ -168,6 +169,7 @@ public class TableStage extends Stage implements IMyStage {
           showGraph.setOnAction(event -> {
                if(graphStage == null) {
                    graphStage = new GraphStage(this);
+                   Navigation.getInstance().pushItem(graphStage);
                    graphStage.setTitle("Graph Chart");
                    graphStage.show();
                }

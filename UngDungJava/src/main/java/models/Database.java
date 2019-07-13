@@ -2,7 +2,11 @@ package models;
 
 import java.sql.*;
 import java.util.Properties;
-
+/*
+ALTER TABLE tblUsers
+ADD COLUMN isDisabled int AFTER name;
+update tblUsers set isDisabled = 1 where email = "duong.nguyen13600@gmail.com";
+* */
 public class Database {
     public static final String DATABASE_DRIVER = "com.mysql.cj.jdbc.Driver";
     public static final String DATABASE_URL = "jdbc:mysql://localhost:3306/javatutorials";
@@ -51,9 +55,13 @@ public class Database {
                    String passwordBase = resultSet.getString("password");
                    String phoneNumber = resultSet.getString("phoneNumber");
                    String description = resultSet.getString("description");
+                   Integer isDisabled = resultSet.getInt("isDisabled");
+                   if(isDisabled == 1) {
+                       throw new SQLException("Lisence expired");
+                   }
                    return new User(id, name, emailBase, passwordBase, phoneNumber, description);
                }
-               return null;
+            throw new SQLException("Wrong user or password");
         }
 
         public void signUpUser(String name, String email, String password, String phoneNumber,String description) throws SQLException{
@@ -74,6 +82,21 @@ public class Database {
         }
         catch(Exception e){
             System.out.println("error: " + e);
+        }
+    }
+
+    public boolean checkUserStatus(String email){
+        try {
+            Statement statement = this.getConnection().createStatement();
+            String sql = "select * from tblUsers where email = '" + email + "' and isDisabled = 0";
+            ResultSet resultSet = statement.executeQuery(sql);
+            while(resultSet.next()){
+                return true;
+            }
+            return false;
+        }
+        catch(Exception e){
+            return false;
         }
     }
 }

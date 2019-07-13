@@ -5,10 +5,12 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class GraphStage extends Stage implements IMyStage {
+public class GraphStage extends MyStage implements IMyStage {
 
+    private MyMenuBar myMenuBar = new MyMenuBar();
     private CategoryAxis xAxis = new CategoryAxis();
     private NumberAxis yAxis = new NumberAxis();
     private LineChart<String,Number> lineChart;
@@ -16,12 +18,14 @@ public class GraphStage extends Stage implements IMyStage {
     private Scene scene;
     private TableStage tableStage;
     GraphStage(TableStage tableStage){
+        super();
         this.tableStage = tableStage;
         setUpUi();
         setUpAction();
 
     }
 
+    private VBox vBox = new VBox();
     @Override
     public void setUpUi() {
 
@@ -33,7 +37,8 @@ public class GraphStage extends Stage implements IMyStage {
 
         xAxis.setLabel("Product Name");
         yAxis.setLabel("Price");
-        scene = new Scene(lineChart,800,900);
+        scene = new Scene(vBox,800,400);
+        vBox.getChildren().addAll(myMenuBar,lineChart);
         lineChart.getData().addAll(series);
         this.setScene(scene);
     }
