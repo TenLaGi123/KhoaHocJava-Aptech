@@ -170,9 +170,10 @@ public class TableStage extends MyStage implements IMyStage {
                if(graphStage == null) {
                    graphStage = new GraphStage(this);
                    Navigation.getInstance().pushItem(graphStage);
-                   graphStage.setTitle("Graph Chart");
-                   graphStage.show();
                }
+              graphStage.setTitle("Graph Chart");
+              graphStage.show();
+              graphStage.checkUserStatus();
           });
 
     }
