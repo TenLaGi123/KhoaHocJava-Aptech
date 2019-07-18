@@ -1,5 +1,6 @@
 package views;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -107,6 +108,7 @@ public class LoginStage extends Stage implements IMyStage{
              }
 
          });
+         
          txtPassword.textProperty().bindBidirectional(txtField.textProperty());
          toggleButton.setOnAction(new EventHandler<ActionEvent>() {
              public void handle(ActionEvent event) {
