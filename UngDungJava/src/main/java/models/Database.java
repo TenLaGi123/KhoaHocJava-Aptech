@@ -1,6 +1,11 @@
 package models;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Observable;
 import java.util.Properties;
 /*
 ALTER TABLE tblUsers
@@ -97,6 +102,28 @@ public class Database {
         }
         catch(Exception e){
             return false;
+        }
+    }
+
+    public ObservableList<Product> getAllProducts(){
+        ObservableList<Product> products = FXCollections.observableArrayList();
+        try {
+            Statement statement = this.getConnection().createStatement();
+            String sql = "select * from tblProducts";
+            ResultSet resultSet = statement.executeQuery(sql);
+            while(resultSet.next()){
+                String productID = resultSet.getString("productID");
+                String productName = resultSet.getString("productName");
+                Integer year = resultSet.getInt("year");
+                String description = resultSet.getString("description");
+                Double price = resultSet.getDouble("price");
+                Product product = new Product(productID,productName,year,description,price);
+                products.add(product);
+            }
+            return products;
+        }
+        catch(Exception e){
+            return products;
         }
     }
 }

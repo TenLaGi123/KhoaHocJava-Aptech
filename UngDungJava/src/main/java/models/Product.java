@@ -1,5 +1,22 @@
 package models;
+/*
+create table tblProducts(
+   productID VARCHAR(500) NOT NULL PRIMARY KEY ,
+   productName VARCHAR(200) NOT NULL,
+   year INT,
+   description TEXT,
+   price FLOAT NOT NULL
+);
+insert into tblProducts(productID,productName,year,description,price,userID)
+values ("ID1245", "Iphone XS", 2018, "Good Condition", 1000.23,1),
+("ID6789", "Acer Predator", 2017, "In Bad Condition", 1800.24,1),
+("ID3675", "Macbook", 2019, "Good Condition", 3000.23,1),
+("ID2370", "Gucci", 2017, "In Repairing Condition", 800.12,1),
+("ID5698", "Samsung Galaxy", 2019, "In Bad Condition", 1000.23,1)
 
+alter table tblProducts
+add userID int;
+* */
 public class Product {
 
     private String productID;

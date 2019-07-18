@@ -25,11 +25,11 @@ public class DetailInfo extends Stage implements IMyStage {
         txtProductYear.setText(String.valueOf(selectedProduct.getYear()));
     }
 
-    private TableStage tableStage;
-    DetailInfo(TableStage tableStage){
+    private ProductListStage productListStage;
+    DetailInfo(ProductListStage productListStage){
         setUpUi();
         setUpAction();
-        this.tableStage = tableStage;
+        this.productListStage = productListStage;
     }
 
     private Scene scene;
@@ -85,7 +85,7 @@ public class DetailInfo extends Stage implements IMyStage {
             @Override
             public void handle(ActionEvent event) {
                 changeInformationSystem();
-                tableStage.reloadTableView();
+                productListStage.reloadTableView();
                 DetailInfo.this.hide();
             }
         });

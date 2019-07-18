@@ -12,21 +12,23 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import models.Database;
 import models.Product;
 import org.apache.poi.ss.formula.functions.Na;
 
 import java.util.Iterator;
 import java.util.UUID;
 
-public class TableStage extends MyStage implements IMyStage {
+public class ProductListStage extends MyStage implements IMyStage {
 
     private Product selectedProduct;
 
     public ObservableList<Product> getProducts() {
+        products = Database.getInstance().getAllProducts();
         return products;
     }
 
-    TableStage(){
+    ProductListStage(){
         setUpUi();
         setUpAction();
     }
@@ -58,17 +60,18 @@ public class TableStage extends MyStage implements IMyStage {
     private GraphStage graphStage;
 
     private ObservableList<Product> products = FXCollections.observableArrayList(
-            new Product("1001","Iphone",2007,"Good Condition",750.8),
-            new Product("1022","Samsung Galaxy",2008,"Good Condition", 760.9),
-            new Product("1234","Alienware",2009,"In Progress",1500.12),
-            new Product("4563","Macbook",2011,"In Progress",2800.13),
-            new Product("1587","Audi",2015,"In Repairation",50000.99)
+//            new Product("1001","Iphone",2007,"Good Condition",750.8),
+//            new Product("1022","Samsung Galaxy",2008,"Good Condition", 760.9),
+//            new Product("1234","Alienware",2009,"In Progress",1500.12),
+//            new Product("4563","Macbook",2011,"In Progress",2800.13),
+//            new Product("1587","Audi",2015,"In Repairation",50000.99)
             );
 
     public void setUpUi() {
         contextMenu.getItems().addAll(menuItemDelete,menuItemProperties);
 
-        tableView.setItems(products);
+        tableView.setItems(this.getProducts());
+
         columnID.setCellValueFactory(new PropertyValueFactory<Product,String>("productID"));
         columnProductName.setCellValueFactory(new PropertyValueFactory<Product, String>("productName"));
         columnProductYear.setCellValueFactory(new PropertyValueFactory<Product, Integer>("year"));

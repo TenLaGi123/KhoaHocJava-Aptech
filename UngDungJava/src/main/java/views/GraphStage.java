@@ -6,7 +6,6 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 public class GraphStage extends MyStage implements IMyStage {
 
@@ -16,10 +15,10 @@ public class GraphStage extends MyStage implements IMyStage {
     private LineChart<String,Number> lineChart;
     private XYChart.Series series = new XYChart.Series();
     private Scene scene;
-    private TableStage tableStage;
-    GraphStage(TableStage tableStage){
+    private ProductListStage productListStage;
+    GraphStage(ProductListStage productListStage){
         super();
-        this.tableStage = tableStage;
+        this.productListStage = productListStage;
         setUpUi();
         setUpAction();
 
@@ -51,7 +50,7 @@ public class GraphStage extends MyStage implements IMyStage {
     public void reloadgraph(){
         lineChart.setAnimated(false);
         series.getData().removeAll(series.getData());
-        tableStage.getProducts().forEach(product -> {
+        productListStage.getProducts().forEach(product -> {
             series.getData().add(new XYChart.Data<String,Number>(product.getProductName(),product.getPrice()));
         });
     }

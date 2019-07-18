@@ -5,7 +5,9 @@ import java.util.ArrayList;
 public class ClassC {
     private ArrayList<Thread> previousThreads = new ArrayList<>();
     public void doTaskC(){
-        System.out.println("I start doing C");
+        System.out.println("start task C");
+        this.clearThread();
+
     }
 
     public void addThread(Thread thread){
@@ -16,11 +18,11 @@ public class ClassC {
         previousThreads.remove(thread);
     }
 
-    public void clearThread(){
+    private void clearThread(){
         previousThreads.clear();
     }
 
-    public Boolean isFinished(){
+    private Boolean isFinished(){
         int count = 0;
         for (Thread thread: previousThreads) {
             if(thread instanceof Thread1 || thread instanceof Thread2) {
@@ -33,5 +35,11 @@ public class ClassC {
         }
 
         return false;
+    }
+    public void finishThread(Thread thread) {
+        this.addThread(thread);
+        if(this.isFinished()) {
+            this.doTaskC();
+        }
     }
 }

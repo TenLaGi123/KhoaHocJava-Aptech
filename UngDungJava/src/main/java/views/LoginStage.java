@@ -1,6 +1,5 @@
 package views;
 
-import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -101,10 +100,10 @@ public class LoginStage extends Stage implements IMyStage{
              if(user != null){
                  this.hide();
                  User.logInUser = user;
-                 TableStage tableStage = new TableStage();
-                 Navigation.getInstance().pushItem(tableStage);
-                 tableStage.show();
-                 tableStage.checkUserStatus();
+                 ProductListStage productListStage = new ProductListStage();
+                 Navigation.getInstance().pushItem(productListStage);
+                 productListStage.show();
+                 productListStage.checkUserStatus();
              }
 
          });

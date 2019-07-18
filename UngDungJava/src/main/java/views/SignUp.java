@@ -70,8 +70,8 @@ public class SignUp extends Stage implements IMyStage {
                 Database.getInstance().signUpUser(txtName.getText().trim(),
                         txtEmail.getText().trim(), txtPassWord.getText(), txtPhoneNumber.getText(), description.getText());
                 this.hide();
-                TableStage tableStage = new TableStage();
-                tableStage.show();
+                ProductListStage productListStage = new ProductListStage();
+                productListStage.show();
             }
             catch(Exception e){
                 Alert alert = new Alert(Alert.AlertType.ERROR);

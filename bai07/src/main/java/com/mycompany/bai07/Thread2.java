@@ -11,9 +11,6 @@ public class Thread2 extends  Thread {
             System.out.print(i);
         }
         System.out.println("\nEnd Thread2");
-        classC.addThread(this);
-        if(classC.isFinished()) {
-            classC.doTaskC();
-        }
+        classC.finishThread(this);
     }
 }
