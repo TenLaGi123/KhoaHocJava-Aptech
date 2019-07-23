@@ -1,75 +1,45 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class Main {
 
-
     public static void main(String[] args) {
-        // bubbleSort.java
-// demonstrates bubble sort
-// to run this program: C>java BubbleSortApp
-////////////////////////////////////////////////////////////////
-        class ArrayBub
-        {
-            private long[] a; // ref to array a
-            private int nElems; // number of data items
-            //--------------------------------------------------------------
-            public ArrayBub(int max) // constructor
-            {
-                a = new long[max]; // create the array
-                nElems = 0; // no items yet
-            }
-            //--------------------------------------------------------------
-            public void insert(long value) // put element into array
-            {
-                a[nElems] = value; // insert it
-                nElems++; // increment size
-            }
-            //--------------------------------------------------------------
-            public void display() // displays array contents
-            {
-                for(int j=0; j<nElems; j++) // for each element,
-                    System.out.print(a[j] +  ""); // display it
-                System.out.println("");
-            }
-            //--------------------------------------------------------------
-            public void bubbleSort()
+        //(i)
+         ArrayList<Cake> cakes = new ArrayList<Cake>();
 
-            {
-                int out, in;
-                for(out=nElems-1; out>1; out--) // outer loop (backward)
-                    for(in=0; in<out; in++) // inner loop (forward)
-                        if( a[in] > a[in+1] ) // out of order?
-                            swap(in, in+1); // swap them
-            } // end bubbleSort()
-            //--------------------------------------------------------------
-            private void swap(int one, int two)
-            {
-                long temp = a[one];
-                a[one] = a[two];
-                a[two] = temp;
-            }
-//--------------------------------------------------------------
-        } // end class ArrayBub
+         //(ii)
+        Cake cake1 = new OrderCake();
+        cake1.name = "Chocolate";
+        cake1.rate = 12.3;
 
-                int maxSize = 100; // array size
-                ArrayBub arr; // reference to array
-                arr = new ArrayBub(maxSize); // create the array
-                arr.insert(77); // insert 10 items
-                arr.insert(99);
-                arr.insert(44);
-                arr.insert(55);
-                arr.insert(22);
-                arr.insert(88);
-                arr.insert(11);
-                arr.insert(00);
-                arr.insert(66);
-                arr.insert(33);
-                arr.display(); // display items
-                arr.bubbleSort(); // bubble sort them
+        Cake cake2 = new OrderCake();
+        cake2.name = "Strawberry";
+        cake2.rate = 12.4;
 
-                arr.display(); // display them again
-            } // end main()
-        } // end class BubbleSortApp
+        Cake cake3 = new OrderCake();
+        cake2.name = "Vanilla";
+        cake2.rate = 22.4;
+
+        Cake cake4 = new ReadymadeCake();
+        cake4.name = "Cream";
+        cake4.rate = 22.6;
+
+        Cake cake5 = new ReadymadeCake();
+        cake5.name = "Matcha";
+        cake5.rate = 30.6;
+
+        cakes.add(cake1);
+        cakes.add(cake2);
+        cakes.add(cake3);
+        cakes.add(cake4);
+        cakes.add(cake5);
+
+
+    }
+
+}
+
 
 
 

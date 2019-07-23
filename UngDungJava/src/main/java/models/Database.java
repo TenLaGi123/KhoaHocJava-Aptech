@@ -69,16 +69,16 @@ public class Database {
             throw new SQLException("Wrong user or password");
         }
 
-        public void signUpUser(String name, String email, String password, String phoneNumber,String description) throws SQLException{
-         String sql = "insert into tblUsers(name,email,password,phoneNumber,description) values (?,?,?,?,?)";
-         PreparedStatement preparedStatement = this.getConnection().prepareStatement(sql);
-         preparedStatement.setString(1,name);
-         preparedStatement.setString(2,email);
-         preparedStatement.setString(3,password);
-         preparedStatement.setString(4,phoneNumber);
-         preparedStatement.setString(5,description);
-         preparedStatement.executeUpdate();
-        }
+    public void signUpUser(String name, String email, String password, String phoneNumber,String description) throws SQLException{
+        String sql = "insert into tblUsers(name,email,password,phoneNumber,description) values (?,?,?,?,?)";
+        PreparedStatement preparedStatement = this.getConnection().prepareStatement(sql);
+        preparedStatement.setString(1,name);
+        preparedStatement.setString(2,email);
+        preparedStatement.setString(3,password);
+        preparedStatement.setString(4,phoneNumber);
+        preparedStatement.setString(5,description);
+        preparedStatement.executeUpdate();
+    }
 
     public void disconnect(){
         try {
@@ -105,11 +105,11 @@ public class Database {
         }
     }
 
-    public ObservableList<Product> getAllProducts(){
+    public ObservableList<Product> getAllProducts(Integer userID){
         ObservableList<Product> products = FXCollections.observableArrayList();
         try {
             Statement statement = this.getConnection().createStatement();
-            String sql = "select * from tblProducts";
+            String sql = String.format("select * from tblProducts where userID = %d", userID);
             ResultSet resultSet = statement.executeQuery(sql);
             while(resultSet.next()){
                 String productID = resultSet.getString("productID");
@@ -126,4 +126,44 @@ public class Database {
             return products;
         }
     }
+
+    public void addProduct(String productName, Integer year, String description, Float price, Integer userID) throws SQLException{
+        String productID = generateProductID();
+        String sql = "insert into tblProducts(productID,productName,year,description,price,userID) values (?,?,?,?,?,?)";
+        PreparedStatement preparedStatement = this.getConnection().prepareStatement(sql);
+        preparedStatement.setString(1,productID);
+        preparedStatement.setString(2,productName);
+        preparedStatement.setInt(3,year);
+        preparedStatement.setString(4,description);
+        preparedStatement.setFloat(5,price);
+        preparedStatement.setInt(6,userID);
+        preparedStatement.executeUpdate();
+    }
+
+    private String generateProductID(){
+        long time = System.nanoTime();
+        String outputString = String.format("ID-%d", time);
+        return outputString;
+    }
+
+    public void updateProduct(String productID,String productName, Integer year, String description, Float price) throws SQLException{
+        String sql = "update tblProducts set productName = ?, year = ?, description = ?," +
+                " price = ? where productID = ?";
+        PreparedStatement preparedStatement = this.getConnection().prepareStatement(sql);
+        preparedStatement.setString(1,productName);
+        preparedStatement.setInt(2,year);
+        preparedStatement.setString(3,description);
+        preparedStatement.setFloat(4,price);
+        preparedStatement.setString(5,productID);
+        preparedStatement.executeUpdate();
+    }
+
+    public void deleteProduct(String productID) throws SQLException{
+        String sql = "Delete from tblProducts where productID = ?";
+        PreparedStatement preparedStatement = this.getConnection().prepareStatement(sql);
+        preparedStatement.setString(1,productID);
+        preparedStatement.executeUpdate();
+    }
+
 }
+

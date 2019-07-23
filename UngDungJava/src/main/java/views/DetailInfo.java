@@ -11,6 +11,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import models.Database;
 import models.Product;
 
 public class DetailInfo extends Stage implements IMyStage {
@@ -85,8 +86,19 @@ public class DetailInfo extends Stage implements IMyStage {
             @Override
             public void handle(ActionEvent event) {
                 changeInformationSystem();
-                productListStage.reloadTableView();
-                DetailInfo.this.hide();
+                try {
+                    Database.getInstance().updateProduct(
+                            selectedProduct.getProductID(),
+                            txtProductName.getText().trim(),
+                            Integer.valueOf(txtProductYear.getText()),
+                            txtProductDescription.getText(),
+                            Float.valueOf(txtProductPrice.getText()));
+                    productListStage.reloadTableView();
+                    DetailInfo.this.hide();
+                }
+                catch (Exception e){
+                    System.out.println("Error Code: " + e);
+                }
             }
         });
     }

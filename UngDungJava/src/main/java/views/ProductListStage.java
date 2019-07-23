@@ -14,6 +14,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import models.Database;
 import models.Product;
+import models.User;
 import org.apache.poi.ss.formula.functions.Na;
 
 import java.util.Iterator;
@@ -24,7 +25,7 @@ public class ProductListStage extends MyStage implements IMyStage {
     private Product selectedProduct;
 
     public ObservableList<Product> getProducts() {
-        products = Database.getInstance().getAllProducts();
+        products = Database.getInstance().getAllProducts(User.logInUser.getId());
         return products;
     }
 
@@ -98,19 +99,22 @@ public class ProductListStage extends MyStage implements IMyStage {
     public void setUpAction() {
           add.setOnAction(new EventHandler<ActionEvent>() {
               public void handle(ActionEvent event) {
+                  final ProductListStage productListStage = ProductListStage.this;
                   try{
-                      String productID = UUID.randomUUID().toString();
                       String name = txtProductName.getText().trim();
                       String description = txtProductDescription.getText().trim();
                       Integer year = Integer.valueOf(txtProductYear.getText());
-                      Double price = Double.valueOf(txtProductPrice.getText());
+                      Float price = Float.valueOf(txtProductPrice.getText());
 
                       if((name.length()>3) && (year > 1970)){
-                          Product newProduct = new Product(productID,name,year,description,price);
-                          products.add(newProduct);
+
+                          Database.getInstance().addProduct(name,year,description,price,User.logInUser.getId());
+                          productListStage.reloadTableView();
+
                           if(graphStage != null) {
                               graphStage.reloadgraph();
                           }
+
                           clearText();
                           lblChecking.setText("");
                       }
@@ -120,7 +124,7 @@ public class ProductListStage extends MyStage implements IMyStage {
                           lblChecking.setTextFill(Color.RED);
                       }
                   }catch (Exception e){
-                      lblChecking.setText("You enter wrong value: " + e);
+                      lblChecking.setText("Cannot insert product.Error =  " + e);
                       lblChecking.setTextFill(Color.RED);
                   }
 
@@ -158,7 +162,14 @@ public class ProductListStage extends MyStage implements IMyStage {
               alert.setContentText("Are you ok with this?");
 
               if (alert.showAndWait().get() == ButtonType.OK){
-                  deleteItem(selectedProduct.getProductID());
+               //   deleteItem(selectedProduct.getProductID());
+                  try {
+                      Database.getInstance().deleteProduct(selectedProduct.getProductID());
+                      reloadTableView();
+                  }
+                  catch (Exception e){
+                      System.out.println("Error: "+e);
+                  }
               }
 
           });
@@ -201,6 +212,7 @@ public class ProductListStage extends MyStage implements IMyStage {
     }
 
     public void reloadTableView(){
+        tableView.setItems(getProducts());
         if(graphStage != null) {
             graphStage.reloadgraph();
         }

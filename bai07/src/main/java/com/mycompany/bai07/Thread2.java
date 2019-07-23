@@ -10,6 +10,7 @@ public class Thread2 extends  Thread {
         for(int i = 0; i < 1000;i++){
             System.out.print(i);
         }
+
         System.out.println("\nEnd Thread2");
         classC.finishThread(this);
     }
