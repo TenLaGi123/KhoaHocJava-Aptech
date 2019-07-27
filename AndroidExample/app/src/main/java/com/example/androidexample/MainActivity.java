@@ -3,6 +3,7 @@ package com.example.androidexample;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ public class MainActivity extends Activity implements IActivity {
         setContentView(R.layout.activity_main);
         setUpUI();
         setUpAction();
+
     }
 
     @Override
@@ -51,13 +53,8 @@ public class MainActivity extends Activity implements IActivity {
         btnLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Dung Toast de in ra dien thoai
-                Toast.makeText(MainActivity.this,
-                        "Email = "+ txtEmail.getText().toString() +
-                        " Password = " + txtPassword.getText().toString(),
-
-                        Toast.LENGTH_LONG).show();
-
+                Intent intent = new Intent(MainActivity.this,ProductsActivity.class);
+                startActivity(intent);
             }
         });
     }
