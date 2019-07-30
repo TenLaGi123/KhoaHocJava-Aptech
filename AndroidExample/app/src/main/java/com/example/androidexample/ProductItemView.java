@@ -11,13 +11,11 @@ public class ProductItemView extends RecyclerView.ViewHolder {
     public TextView txtProductModel;
     private ProductsActivity productsActivity;
 
-
-
     public ProductItemView(View view){
         super(view);
         txtProductName = (TextView) view.findViewById(R.id.txtProductName);
-        txtProductModel =  (TextView) view.findViewById(R.id.txtProductModel);
-        txtProductPrice =  (TextView) view.findViewById(R.id.txtProductPrice);
+        txtProductModel = (TextView) view.findViewById(R.id.txtProductModel);
+        txtProductPrice = (TextView) view.findViewById(R.id.txtProductPrice);
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override

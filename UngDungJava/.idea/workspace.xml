@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e4f2f6af-ee54-4b06-b1a3-f121751bfb1f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../JavaWeb/src/java/servlets/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/../JavaWeb/src/java/servlets/Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidExample/app/src/main/java/com/example/androidexample/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidExample/app/src/main/java/com/example/androidexample/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidExample/app/src/main/java/com/example/androidexample/ProductItemView.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidExample/app/src/main/java/com/example/androidexample/ProductItemView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidExample/app/src/main/java/com/example/androidexample/ProductsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidExample/app/src/main/java/com/example/androidexample/ProductsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidExample/app/src/main/res/layout/product_item_view.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidExample/app/src/main/res/layout/product_item_view.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -192,7 +194,7 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1680" />
     <option name="height" value="963" />
@@ -329,9 +331,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1680" height="960" extended-state="6" />
+    <frame x="0" y="23" width="1680" height="963" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17704518" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17887668" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
